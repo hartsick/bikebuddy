@@ -33,8 +33,12 @@
 <%= link_to "Create new Ride", new_route_ride_path %> | 
 <%= link_to "Back to All Routes", routes_path %> <br />
 
-<div style='width: 800px;'>
-  <div id="map-canvas" style='width: 800px; height: 400px;'></div>
+<div>
+  <div style='width: 800px;'>
+    <div id="map-canvas" style='width: 800px; height: 400px; float: left;'></div>
+  </div>
+  <div id="map-directions" style='width: 400px; height: 400px; float: left; padding-left: 20px;'>
+  </div>
 </div>
 
 <script>
@@ -64,6 +68,7 @@
   }
   handler.buildMap({provider: mapOptions, provider_key: "AIzaSyDJJPOQH24cT6ETa9IZacS7NENpUt2MKzA", internal: {id: 'map-canvas'}}, function(){
     directionsDisplay.setMap(handler.getMap());
+    directionsDisplay.setPanel(document.getElementById("map-directions"));
   });
 
 </script>
