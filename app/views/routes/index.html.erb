@@ -20,26 +20,35 @@
     <% end %>
   </table>
 </div>
-  <!--   <div style='width: 800px;'>
-      <div id="map" style='width: 800px; height: 400px;'></div>
-    </div>
+<div style='width: 800px;'>
+  <div id="map-canvas" style='width: 800px; height: 400px;'></div>
+</div>
 
 <script>
-handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers([
-    {
-      "lat": 0,
-      "lng": 0,
-      "picture": {
-        "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-        "width":  36,
-        "height": 36
-      },
-      "infowindow": "hello!"
-    }
-  ]);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
-</script> -->
+  var directionsDisplay = new google.maps.DirectionsRenderer();
+  var directionsService = new google.maps.DirectionsService();
+
+  function calcRoute() {
+    var request = {
+      origin: "<%= @routes.first.route_start %>",
+      destination: "<%= @routes.first.route_end %>",
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(result, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(result);
+      }
+    });
+  }
+
+  var handler = Gmaps.build('Google');
+  var losAngeles = new google.maps.LatLng(34.053761, -118.344882);
+  var mapOptions = {
+    zoom:11,
+    center: losAngeles
+  }
+  handler.buildMap({provider: mapOptions, provider_key: "AIzaSyDJJPOQH24cT6ETa9IZacS7NENpUt2MKzA", internal: {id: 'map-canvas'}}, function(){
+    directionsDisplay.setMap(handler.getMap());
+  });
+
+</script>
