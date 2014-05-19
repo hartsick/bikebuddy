@@ -14,7 +14,7 @@ class User
   has_many :routes
   has_and_belongs_to_many :rides
 
-  validates_presence_of :username, :name, :email, :password, :phone
+  validates_presence_of :username, :name, :email, :password_digest, :phone
 
   def password
   	@password

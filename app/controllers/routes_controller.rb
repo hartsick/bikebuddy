@@ -1,5 +1,5 @@
 class RoutesController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, except: [:index]
 
 	def index
 		@routes = Route.all
@@ -10,9 +10,12 @@ class RoutesController < ApplicationController
 	end
 
 	def create
-		@user = User.find(params[:id])
+		@user = User.find(session[:remember_token])
 		@route = Route.new(route_params)
-		if @route.save
+
+		@route.user = @user
+
+		if @route.save 
 			flash[:success] = "Route created successfully."
 			redirect_to routes_path
 		else
@@ -41,8 +44,9 @@ class RoutesController < ApplicationController
 	end
 
 	def destroy
-		# destroy all rides before destroying route
 		@route = Route.find(params[:id])
+		@route.rides.delete_all
+		@route.destroy
 		flash[:success] = "Route destroyed."
 	end
 

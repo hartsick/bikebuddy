@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 			session[:remember_token] = @user.id
 			@current_user = @user
 			flash[:success] = "You're logged in!"
-			redirect_to user_path(current_user)
+			redirect_to profile_path(@current_user)
 			# cookies.permanent[:remember_token] = @user.id
 		end
 	end

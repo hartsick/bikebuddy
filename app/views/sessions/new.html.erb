@@ -1,11 +1,19 @@
 <h1>Login</h1>
 
-<ul>
+<div class="clearfix">
 <%= form_for :session, :url => sessions_path do |f| %>
-	<li><b>Username:</b> <%= f.text_field :username %></li>
-	<li><b>Password:</b> <%= f.password_field :password %></li>
-	<br />
-  <%= f.submit "Log In", :class => "btn btn-primary" %>
-  <li>Not a member? <%= link_to "Register for an account", new_user_path %></li>
+
+	<div class="form-group">
+		<%= f.label :username %>
+		<%= f.text_field :username, :class => "form-control" %>
+	</div>
+	<div class="form-group">
+		<%= f.label "Password" %>
+		<%= f.password_field :password, :class => "form-control" %>
+	</div>
+	<div class="actions">
+	  <%= f.submit "Log In", :class => "btn btn-primary" %>
+  </div>
 <% end %>
-</ul>
+</div>
+Not a member? <%= link_to "Register for an account", new_user_path %>

@@ -8,8 +8,7 @@ class Ride
   field :frequency, type: String
   field :meeting_points, type: String
 
-  field :ride_admin, type: String
-  field :ride_creator, type: String
+  field :created_by, type: String
 
   has_and_belongs_to_many :users
   belongs_to :route

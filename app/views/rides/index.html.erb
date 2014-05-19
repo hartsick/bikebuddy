@@ -1,19 +1,34 @@
 <h1>Rides along <%= @route.name %></h1>
+<p><%= @route.route_start %> to <%= @route.route_end %></p>
 
-<% @rides.each do |ride| %>
-	
-		<h3><%= ride.name.titlecase %></h3><br />
-		<b>Difficulty: </b> <%= ride.difficulty %><br />
-		<b>Start Time:</b> <%= ride.start_time_hour %>:<%=ride.start_time_min %> <%=ride.start_time_am %><br />
-		<b>Frequency: </b> <%= ride.frequency %><br />
-		<b>Meeting Points: </b> <%= ride.meeting_points %><br />
+<div class="table-responsive">
+	<table class="table table-striped">
+		<tr>
+			<th>Ride Name</th>
+			<th>Difficulty</th>
+			<th>Start Time</th>
+			<th>Frequency</th>
+			<th></th>
+		</tr>
+		<% @route.rides.each do |ride| %>
+			<td><%= ride.name.titlecase %></td>
+			<td><%= ride.difficulty %></td>
+			<td><%= ride.start_time_hour %>:<%=ride.start_time_min %> <%=ride.start_time_am %></td>
+			<td><%= ride.frequency %></td>
+			<td>
+					<%= link_to "View ride info", route_ride_path(ride, @route) %> 
+					<% if session[:remember_token].to_s == ride.created_by %>
+						| <%= link_to "Delete this Ride", [@route, ride], method: :destroy %> | 
+						<%= link_to "Edit this Ride", edit_route_ride_path(ride, @route) %> 
+					<% end %>
 
-		<%= link_to "View ride info", route_ride_path(ride, @route) %>
+			</td>
+		</tr>
 
-	<br />
+		<% end %>
 
-<% end %>
+	</table>
+</div>
 
 <%= link_to "Create new Ride", new_route_ride_path %> | 
-<%= link_to "Back to #{@route.name} Route", route_path(@route) %> | 
 <%= link_to "Back to All Routes", routes_path %>

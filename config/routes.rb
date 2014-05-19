@@ -1,14 +1,18 @@
 BikeTrainApp::Application.routes.draw do
   resource :sessions, only: [:new, :create, :destroy]
   resources :users
+  get 'users/:id/profile' => 'users#profile', as: :profile
 
   resources :routes do
     resources :rides
   end
 
-  resources :rides
+  resources :rides, only: [:new, :create, :update, :edit]
+  
+  # post 'routes/:id/rides/:id' => 'rides#follow'
+  # post 'routes/:id/rides/:id' => 'rides#unfollow'
 
-  root 'routes#index'
+  root 'users#profile'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

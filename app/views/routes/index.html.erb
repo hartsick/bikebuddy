@@ -1,11 +1,45 @@
-<h1>Browse Routes</h1>
+<h1>Browse All Routes</h1>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <tr>
+      <th>Route</th>
+      <th>Route Start</th>
+      <th>Route End</th>
+      <th># of Rides</th>
+      <th></th>
+    </tr>
+    
+    <% @routes.each do |r| %>
+    <tr>
+      <td><%= r.name.titlecase %></td>
+    	<td><%= r.route_start %></td>
+    	<td><%= r.route_end %></td>
+      <td><%= r.rides.size %></td>
+      <td><%= link_to "Show Rides", route_rides_path(r) %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+  <!--   <div style='width: 800px;'>
+      <div id="map" style='width: 800px; height: 400px;'></div>
+    </div>
 
-<% @routes.each do |r| %>
-	<h3><%= r.name.titlecase %></h3><br />
-	<span>
-	<b>Route Start:</b> <%= r.route_start %>  
-	<b>Route End:</b> <%= r.route_end %>  
-	<b># of Rides</b> <%= r.rides.size %> 
-	<%= link_to "Show Route", route_path(r) %> 
-	</span>
-<% end %>
+<script>
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers([
+    {
+      "lat": 0,
+      "lng": 0,
+      "picture": {
+        "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+        "width":  36,
+        "height": 36
+      },
+      "infowindow": "hello!"
+    }
+  ]);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script> -->

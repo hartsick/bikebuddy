@@ -14,8 +14,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
-        <!-- TO DO: Fix My Rides -->
-				<li><%#= link_to "My Rides", user_rides_path(current_user) %></li>
 				<li><%= link_to "All Routes", routes_path %></li>
 				<li><%= link_to "New Route", new_route_path %></li>
         <!-- TO DO: Fix this -->
@@ -28,6 +26,7 @@
 					<li class="right-nav"><%= link_to "Register", new_user_path %></li>
 					<li class="right-nav"><%= link_to "Log In", new_sessions_path %></li>
         <% else %>
+          <li><%= link_to "My Rides", profile_path(session[:remember_token]) %></li>
 					<li><%= link_to "Profile", user_path(current_user) %></li>
           <li><%= link_to "Log Out", sessions_path, :method => :delete %></li>
         <% end %>

@@ -1,5 +1,6 @@
 <h1>Create New Route</h1>
 
+<div class="well well-lg clearfix">
 <%= form_for @route do |f| %>
 	Name: <%= f.text_field :name, :class => "form-control"  %><br />
 	Route Start: <%= f.text_field :route_start, :class => "form-control"  %><br />
@@ -8,4 +9,5 @@
 	<br />
 	<br />
 <% end %>
+</div>
 

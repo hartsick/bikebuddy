@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
+	before_action :authenticate_user, except: [:new, :create]
+
 	def profile
-		@user = User.find(params[:id])
-		@routes = Route.where(:user => params[:id])
-		@rides = Ride.where(:user => params[:id])
+		@user = User.find(session[:remember_token])
+		@rides = @user.rides
+		@followed_rides = Ride.where(:user => @user)
+		@routes = @user.routes
 	end
 
 	def show
@@ -26,7 +29,7 @@ class UsersController < ApplicationController
 			# log 'em in
 			session[:remember_token] = @user.id
 			@current_user = @user
-			redirect_to routes_path
+			redirect_to profile_path(@user)
 		else
 			render 'new'
 		end
@@ -38,9 +41,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(params.require(:user).permit(:name, :phone))
+    if @user.update(params.require(:user).permit(:username, :name, :email, :phone))
     	flash[:success] = "Your account has been updated."
-      redirect_to root_path(@user)
+      redirect_to profile_path(@user)
     else
       render 'edit'
     end
@@ -58,6 +61,6 @@ class UsersController < ApplicationController
 	protected
 
 	def user_params
-			params.require(:user).permit(:username, :name, :email, :password, :phone, :avatar)
+			params.require(:user).permit(:username, :name, :email, :password, :phone)
 	end
 end

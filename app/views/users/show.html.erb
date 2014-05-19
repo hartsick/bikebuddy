@@ -1,12 +1,21 @@
 <h1>Account Info</h1>
 
-<ul>
-	<li><b>Username:</b> <%= @user.username %></li>
-	<li><b>Name:</b> <%= @user.name %></li>
-	<li><b>Email:</b> <%= @user.email %></li>
-	<li><b>Phone:</b> <%= @user.phone %></li>
-	<br />
-</ul>
+<div class="table-responsive">
+	<table class="table table-striped">
+		<tr>
+			<th>Username</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Phone</th>
+		</tr>
+		<tr>
+			<td><%= @user.username %></td>
+			<td><%= @user.name %></td>
+			<td><%= @user.email %></td>
+			<td><%= @user.phone %></td>
+		</tr>
+	</table>
+</div>
 
 <%= link_to 'Edit Profile', edit_user_path %> | 
 <%= link_to 'Delete Account', @user, method: :delete %>

@@ -1,5 +1,25 @@
-<h1>Edit Account Info</h1>
+<div class="well well-lg">
+	<%#Show some errors%>
+	<% if @user.errors.any? %>
+	  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this ride from being saved:</h2>
+	  <ul class="list-group">
+	    <% @user.errors.messages.each do |message| %>
+	      <li class="list-group-item list-group-item-danger">
+	        <%= message[1][0] %>
+	      </li>
+	    <% end %>
+	  </ul>
+	<% end %>
 
-<%= render partial: 'users/form'%>
+	<h1>Edit Account Info</h1>
+
+<%= form_for @user do |f| %>
+	<li><b>Username:</b> <%= f.text_field :username %></li>
+	<li><b>Name:</b> <%= f.text_field :name %></li>
+	<li><b>Email:</b> <%= f.email_field :email %></li>
+	<li><b>Phone:</b> <%= f.phone_field :phone %></li>
+	
+<%= f.submit %>
+<% end %>
 
 <%= link_to 'Back', :back %>
