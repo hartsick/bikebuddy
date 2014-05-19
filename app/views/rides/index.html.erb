@@ -31,4 +31,39 @@
 </div>
 
 <%= link_to "Create new Ride", new_route_ride_path %> | 
-<%= link_to "Back to All Routes", routes_path %>
+<%= link_to "Back to All Routes", routes_path %> <br />
+
+<div style='width: 800px;'>
+  <div id="map-canvas" style='width: 800px; height: 400px;'></div>
+</div>
+
+<script>
+  var directionsDisplay = new google.maps.DirectionsRenderer();
+  var directionsService = new google.maps.DirectionsService();
+
+  function calcRoute() {
+    var request = {
+      origin: "<%= @route.route_start %>",
+      destination: "<%= @route.route_end %>",
+      travelMode: google.maps.TravelMode.BICYCLING
+    };
+    directionsService.route(request, function(result, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(result);
+      }
+    });
+  }
+
+  calcRoute();
+
+  var handler = Gmaps.build('Google');
+  var losAngeles = new google.maps.LatLng(34.053761, -118.344882);
+  var mapOptions = {
+    zoom:11,
+    center: losAngeles
+  }
+  handler.buildMap({provider: mapOptions, provider_key: "AIzaSyDJJPOQH24cT6ETa9IZacS7NENpUt2MKzA", internal: {id: 'map-canvas'}}, function(){
+    directionsDisplay.setMap(handler.getMap());
+  });
+
+</script>
