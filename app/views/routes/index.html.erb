@@ -30,8 +30,8 @@
 
   function calcRoute() {
     var request = {
-      origin: "<%= @routes[3].route_start %>",
-      destination: "<%= @routes[3].route_end %>",
+      origin: "<%= @routes[4].route_start %>",
+      destination: "<%= @routes[4].route_end %>",
       travelMode: google.maps.TravelMode.BICYCLING
     };
     directionsService.route(request, function(result, status) {
