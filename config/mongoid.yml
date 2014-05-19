@@ -70,4 +70,4 @@ test:
 production:
       sessions:
         default:
-          uri: <%= ENV['mongodb://heroku:Xrn0j1Bdo6zzn7m2atd7ETTp05Tv9rjX1uMNJbw6zgDNMs-8FhhUcvJdqLTYJMl6efxouGxgkbSmIga-qiVZJQ@oceanic.mongohq.com:10075/app25404987'] %>
+          uri: <%= ENV['MONGOHQ_URL'] %>
