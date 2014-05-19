@@ -11,7 +11,6 @@
 			<th></th>
 		</tr>
 		<% @route.rides.each do |ride| %>
-    <tr>
 			<td><%= ride.name.titlecase %></td>
 			<td><%= ride.difficulty %></td>
 			<td><%= ride.start_time_hour %>:<%=ride.start_time_min %> <%=ride.start_time_am %></td>
@@ -25,7 +24,9 @@
 
 			</td>
 		</tr>
+
 		<% end %>
+
 	</table>
 </div>
 
