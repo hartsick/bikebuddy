@@ -1,7 +1,7 @@
 <h1>Rides along <%= @route.name %></h1>
 <p><%= @route.route_start %> to <%= @route.route_end %></p>
 
-<div class="table-responsive">
+<div id="rides-index-view" class="table-responsive">
 	<table class="table table-striped">
 		<tr>
 			<th>Ride Name</th>
@@ -11,6 +11,7 @@
 			<th></th>
 		</tr>
 		<% @route.rides.each do |ride| %>
+    <tr>
 			<td><%= ride.name.titlecase %></td>
 			<td><%= ride.difficulty %></td>
 			<td><%= ride.start_time_hour %>:<%=ride.start_time_min %> <%=ride.start_time_am %></td>
@@ -24,9 +25,7 @@
 
 			</td>
 		</tr>
-
 		<% end %>
-
 	</table>
 </div>
 
