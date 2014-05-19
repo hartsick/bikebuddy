@@ -30,9 +30,9 @@
 
   function calcRoute() {
     var request = {
-      origin: "<%= @routes.first.route_start %>",
-      destination: "<%= @routes.first.route_end %>",
-      travelMode: google.maps.TravelMode.DRIVING
+      origin: "<%= @routes[3].route_start %>",
+      destination: "<%= @routes[3].route_end %>",
+      travelMode: google.maps.TravelMode.BICYCLING
     };
     directionsService.route(request, function(result, status) {
       if (status == google.maps.DirectionsStatus.OK) {
@@ -40,6 +40,8 @@
       }
     });
   }
+
+  calcRoute();
 
   var handler = Gmaps.build('Google');
   var losAngeles = new google.maps.LatLng(34.053761, -118.344882);
