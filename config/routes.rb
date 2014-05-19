@@ -7,7 +7,7 @@ BikeTrainApp::Application.routes.draw do
     resources :rides
   end
 
-  resources :rides, only: [:new, :create, :update, :edit]
+  resources :rides
   
   # post 'routes/:id/rides/:id' => 'rides#follow'
   # post 'routes/:id/rides/:id' => 'rides#unfollow'

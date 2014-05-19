@@ -18,7 +18,7 @@
 			<td>
 					<%= link_to "View ride info", route_ride_path(ride, @route) %> 
 					<% if session[:remember_token].to_s == ride.created_by %>
-						| <%= link_to "Delete this Ride", [@route, ride], method: :destroy %> | 
+						| <%= link_to "Delete this Ride", [@route, ride], method: :delete %> | 
 						<%= link_to "Edit this Ride", edit_route_ride_path(ride, @route) %> 
 					<% end %>
 

@@ -20,7 +20,7 @@
 			</td>
 			<td>
 				<% if session[:remember_token].to_s == @ride.created_by %>
-					<%= link_to "Delete this Ride", [@ride.route, @ride], method: :destroy, data: { confirm: 'Are you sure?'} %> | 
+					<%= link_to "Delete this Ride", [@ride.route, @ride], method: :delete, data: { confirm: 'Are you sure?'} %> | 
 					<%= link_to "Edit this Ride", edit_route_ride_path %> 
 				<% end %>
 				<% unless @ride.users.include?(@user) %>
