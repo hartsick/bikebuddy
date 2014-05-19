@@ -1,0 +1,2 @@
+Strava Gem:
+	https://github.com/stevenchanin/strava-api

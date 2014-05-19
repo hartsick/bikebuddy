@@ -1,0 +1,12 @@
+<h1>Account Info</h1>
+
+<ul>
+	<li><b>Username:</b> <%= @user.username %></li>
+	<li><b>Name:</b> <%= @user.name %></li>
+	<li><b>Email:</b> <%= @user.email %></li>
+	<li><b>Phone:</b> <%= @user.phone %></li>
+	<br />
+</ul>
+
+<%= link_to 'Edit Profile', edit_user_path %> | 
+<%= link_to 'Delete Account', @user, method: :delete %>

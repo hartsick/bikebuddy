@@ -1,0 +1,10 @@
+<%#= form_for @user, :html => { :multipart => true } %>
+<%= form_for @user do |f| %>
+	<li><b>Username:</b> <%= f.text_field :username %></li>
+	<li><b>Name:</b> <%= f.text_field :name %></li>
+	<li><b>Email:</b> <%= f.email_field :email %></li>
+	<li><b>Password:</b> <%= f.password_field :password %></li>
+	<li><b>Phone:</b> <%= f.phone_field :phone %></li>
+	<br />
+<%= f.submit %>
+<% end %>

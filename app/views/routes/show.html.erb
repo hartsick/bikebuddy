@@ -1,0 +1,8 @@
+<b><%= @route.name.titlecase %></b><br />
+<b>Route Start:</b> <%= @route.route_start %>
+<b>Route End:</b> <%= @route.route_end %>
+<b># of Rides</b> <%= @route.rides.size %>
+
+<br />
+<%= link_to "Show rides along route", route_rides_path(@route) %> | 
+<%= link_to "Create new Ride", new_route_ride_path(@route) %>

@@ -1,0 +1,11 @@
+<h1>Login</h1>
+
+<ul>
+<%= form_for :session, :url => sessions_path do |f| %>
+	<li><b>Username:</b> <%= f.text_field :username %></li>
+	<li><b>Password:</b> <%= f.password_field :password %></li>
+	<br />
+  <%= f.submit "Log In", :class => "btn btn-primary" %>
+  <li>Not a member? <%= link_to "Register for an account", new_user_path %></li>
+<% end %>
+</ul>

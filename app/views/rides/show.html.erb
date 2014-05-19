@@ -1,0 +1,12 @@
+<h3><%= @ride.name.titlecase %></h3><br />
+	<b>Route</b> <%= @route.name %><br />
+	<b>Difficulty: </b> <%= @ride.difficulty %><br />
+	<b>Start Time:</b> <%= @ride.start_time_hour %>:<%=@ride.start_time_min %> <%=@ride.start_time_am %><br />
+	<b>Frequency: </b> <%= @ride.frequency %><br />
+	<b>Meeting Points: </b> <%= @ride.meeting_points %><br />
+
+<br />
+
+<%= link_to "Delete this Ride", @ride, method: :delete %> | 
+<%= link_to "Back to Rides", route_rides_path(@route) %> | 
+<%= link_to "Back to Routes", routes_path %>

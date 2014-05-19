@@ -1,0 +1,19 @@
+<h1>Rides along <%= @route.name %></h1>
+
+<% @rides.each do |ride| %>
+	
+		<h3><%= ride.name.titlecase %></h3><br />
+		<b>Difficulty: </b> <%= ride.difficulty %><br />
+		<b>Start Time:</b> <%= ride.start_time_hour %>:<%=ride.start_time_min %> <%=ride.start_time_am %><br />
+		<b>Frequency: </b> <%= ride.frequency %><br />
+		<b>Meeting Points: </b> <%= ride.meeting_points %><br />
+
+		<%= link_to "View ride info", route_ride_path(ride, @route) %>
+
+	<br />
+
+<% end %>
+
+<%= link_to "Create new Ride", new_route_ride_path %> | 
+<%= link_to "Back to #{@route.name} Route", route_path(@route) %> | 
+<%= link_to "Back to All Routes", routes_path %>

@@ -1,0 +1,11 @@
+<h1>Browse Routes</h1>
+
+<% @routes.each do |r| %>
+	<h3><%= r.name.titlecase %></h3><br />
+	<span>
+	<b>Route Start:</b> <%= r.route_start %>  
+	<b>Route End:</b> <%= r.route_end %>  
+	<b># of Rides</b> <%= r.rides.size %> 
+	<%= link_to "Show Route", route_path(r) %> 
+	</span>
+<% end %>

@@ -1,0 +1,42 @@
+<div class="well well-lg">
+	<%#Show some errors%>
+	<% if @ride.errors.any? %>
+	  <h2><%= pluralize(@ride.errors.count, "error") %> prohibited this ride from being saved:</h2>
+	  <ul class="list-group">
+	    <% @ride.errors.messages.each do |message| %>
+	      <li class="list-group-item list-group-item-danger">
+	        <%= message[1][0] %>
+	      </li>
+	    <% end %>
+	  </ul>
+	<% end %>
+
+	<h1>New Ride Along Route</h1>
+
+	<%= form_for [@route, @ride] do |f| %>
+		<div class="field col-lg-12 col-md-12">
+			<%= f.label :name %>
+			<%= f.text_field :name, :class => "form-control" %><br />
+		</div>
+
+		<div class="field col-lg-4 col-md-4">
+			<%= f.label :difficulty %>
+			<%= f.select :difficulty, options_for_select(%w{ Easy Moderate Hard}), {:include_blank => true}, {:class => "form-control"} %><br />
+		</div>
+		<div class="field col-lg-4 col-md-4">
+			<%= f.label "Start Time" %>
+			<%= f.select :start_time_hour, options_for_select("1"=>1, "2"=>2, "3"=>3, "4"=>4, "5"=>5, "6"=>6, "7"=>7,"8"=>8, "9"=>9, "10"=>10, "11"=>11, "12"=>12), {:include_blank => true}, {:class => "form-control"} %> 
+			<%= f.select :start_time_min, options_for_select("00" => 0, "15" => 15, "30" => 30, "45" => 45), {:include_blank => true}, {:class => "form-control"} %>
+			<%= f.select :start_time_am, options_for_select(%w{AM PM}), {:include_blank => true}, {:class => "form-control"} %>
+		</div>
+		<div class="field col-lg-4 col-md-4">
+			<%= f.label :frequency %>
+			<%= f.text_field :frequency, :class => "form-control" %><br />
+		</div>
+		<% f.hidden_field :ride_creator, :value => session[:remember_token] %>
+		<div class="actions col-lg-12 col-md-12">
+			<%= f.submit :class => "btn btn-primary" %>
+		</div>
+
+	</div>
+	<% end %>

@@ -1,0 +1,11 @@
+<h1>Create New Route</h1>
+
+<%= form_for @route do |f| %>
+	Name: <%= f.text_field :name, :class => "form-control"  %><br />
+	Route Start: <%= f.text_field :route_start, :class => "form-control"  %><br />
+	Route End: <%= f.text_field :route_end, :class => "form-control"  %><br />
+	<%= f.submit :class => "btn btn-primary" %>
+	<br />
+	<br />
+<% end %>
+
