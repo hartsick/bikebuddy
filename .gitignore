@@ -17,3 +17,6 @@
 
 # Ignore my notes
 ./notes.txt
+
+# Ignore user avatar data
+/public/system/users/avatars/
