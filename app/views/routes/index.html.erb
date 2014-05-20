@@ -15,7 +15,9 @@
     	<td><%= r.route_start %></td>
     	<td><%= r.route_end %></td>
       <td><%= r.rides.size %></td>
-      <td><%= link_to "Show Rides", route_rides_path(r) %></td>
+      <% if session[:remember_token] %>
+        <td><%= link_to "Show Rides", route_rides_path(r) %></td>
+      <% end %>
     </tr>
     <% end %>
   </table>
