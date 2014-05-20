@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 1.2'
 
 # Use Mongoid Papercip for image uploads
 gem 'mongoid-paperclip', :require => "mongoid_paperclip"
+gem 'aws-sdk', '~> 1.3.4'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -15,7 +15,8 @@
 			<td><%= @ride.start_time_hour %>:<%=@ride.start_time_min %> <%=@ride.start_time_am %></td>
 			<td><%= @ride.frequency %></td>
 			<td><% @users.each do |user| %>
-						<%= user.username %>  
+						<%#= link_to user_path(user) %>  
+						<%= user.username %> 
 					<% end %>
 			</td>
 			<td>
@@ -24,9 +25,9 @@
 					<%= link_to "Edit this Ride", edit_route_ride_path %> 
 				<% end %>
 				<% unless @ride.users.include?(@user) %>
-					 | <%#= link_to "Follow this Ride", [@ride.route, @ride], method: :follow %> 
+					 | <%= link_to "Follow this Ride", [@ride.route, @ride], method: :follow %> 
 				<% else %>
-					<%#= link_to "Unfollow this Ride", [@ride.route, @ride], method: :unfollow %>
+					| <%= link_to "Unfollow this Ride", [@ride.route, @ride], method: :unfollow %>
 				<% end %>
 			</td>
 		</tr>

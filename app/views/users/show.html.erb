@@ -3,12 +3,18 @@
 <div class="table-responsive">
 	<table class="table table-striped">
 		<tr>
+			<% if @user.avatar.url(:thumb) %>
+				<th></th>
+			<% end %>
 			<th>Username</th>
 			<th>Name</th>
 			<th>Email</th>
 			<th>Phone</th>
 		</tr>
 		<tr>
+			<% if @user.avatar.url(:thumb) %>
+				<td><%= image_tag @user.avatar.url(:thumb) %>
+			<% end %>
 			<td><%= @user.username %></td>
 			<td><%= @user.name %></td>
 			<td><%= @user.email %></td>

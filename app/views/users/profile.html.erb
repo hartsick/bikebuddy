@@ -21,29 +21,13 @@
 			<td><%= ride.start_time_hour %>:<%=ride.start_time_min %> <%=ride.start_time_am %></td>
 			<td><%= ride.frequency %></td>
 			<td>
-				<%= link_to "View ride info", route_ride_path(ride._id, ride.route) %> | 
-				<%= link_to "Delete this Ride", [ride.route, ride], method: :destroy, data: { confirm: 'Are you sure?' }  %> | 
+				<%= link_to "View ride info", route_ride_path(ride._id, ride.route) %>
+				<% if @user.id.to_s == ride.created_by %>
+				 | <%= link_to "Delete this Ride", [ride.route, ride], method: :destroy, data: { confirm: 'Are you sure?' }  %> | 
 				<%= link_to "Edit this Ride", edit_route_ride_path(ride._id, ride.route) %> 
-			</td>
-		</tr>
-		<% end %>
-	</table>
-	<table class="table table-striped">
-		<tr>
-			<h3>My Followed Rides</h3>
-		</tr>
-		<%#= raise @followed_rides.all.inspect %>
-		<% @followed_rides.all do |ride| %>
-		<tr>
-			<td><%= ride.route.name %></td>
-			<td><%= ride.name.titlecase %></td>
-			<td><%= ride.difficulty %></td>
-			<td><%= ride.start_time_hour %>:<%=ride.start_time_min %> <%=ride.start_time_am %></td>
-			<td><%= ride.frequency %></td>
-			<td>
-				<%= link_to "View ride info", route_ride_path(ride._id, ride.route) %> | 
-				<%= link_to "Delete this Ride", ride, method: :destroy, data: { confirm: 'Are you sure?' }  %> | 
-				<%= link_to "Edit this Ride", edit_route_ride_path(ride._id, ride.route) %> 
+				<% else %>
+				| <%= link_to "Unfollow this Ride", [ride.route, ride], method: :unfollow %>
+				<% end %>
 			</td>
 		</tr>
 		<% end %>

@@ -1,6 +1,22 @@
 class User
   include Mongoid::Document
-  # include Mongoid::Paperclip
+  include Mongoid::Paperclip
+
+  # Include this after_commit so that paperclip doesn't freak out
+   def self.after_commit(*args, &block)
+     args.each do |arg|
+     case arg[:on]
+       when :destroy
+         after_destroy &block
+       end
+     end
+   end
+
+  has_mongoid_attached_file :avatar,
+   :styles => {
+      :thumb => "100x100#",   # Centrally cropped
+      :small  => "150x150>"}  # Only squish if it's larger than this
+
   field :username, type: String
   field :name, type: String
   field :email, type: String
@@ -8,13 +24,13 @@ class User
   field :password_digest, type: String
 
   field :phone, type: String
-  # has_mongoid_attached_file :avatar
-  # validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   has_many :routes
   has_and_belongs_to_many :rides
 
   validates_presence_of :username, :name, :email, :password_digest, :phone
+
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def password
   	@password

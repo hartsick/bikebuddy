@@ -7,10 +7,10 @@ BikeTrainApp::Application.routes.draw do
     resources :rides
   end
 
+  post 'routes/:route_id/rides/:id' => 'rides#follow'
+  delete 'routes/:route_id/rides/:id' => 'rides#unfollow'
+
   resources :rides
-  
-  # post 'routes/:id/rides/:id' => 'rides#follow'
-  # post 'routes/:id/rides/:id' => 'rides#unfollow'
 
   root 'users#profile'
 

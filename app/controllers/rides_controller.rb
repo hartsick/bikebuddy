@@ -71,6 +71,7 @@ class RidesController < ApplicationController
 		
 		if @ride.save
 			flash[:success] = "You are now following this route."
+			redirect_to route_rides_path(@ride.route)
 		end
 	end
 
